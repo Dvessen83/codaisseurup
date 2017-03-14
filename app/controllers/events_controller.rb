@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @categories = @event.categories
   end
 
   def new
@@ -26,7 +27,7 @@ class EventsController < ApplicationController
   def edit
   end
 
-  def updated
+  def update
     if @event.update(event_params)
       redirect_to @event, notice: "Event succesfully updated"
     else
@@ -41,7 +42,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :location, :price, :capacity, :includes_food, :includes_drinks, :starts_at, :ends_at, :active, :user)
+    params.require(:event).permit(:name, :description, :location, :price, :capacity, :includes_food, :includes_drinks, :starts_at, :ends_at, :active, :user, category_ids: [])
 
   end
 end

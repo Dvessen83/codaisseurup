@@ -4,7 +4,17 @@
   <div class="panel-body">
 
     <p>Location: <%= @event.location %></p>
-    
+
+    <p>Date start: <%= @event.starts_at.strftime("%a %e %B %Y %H:%M") %> </p>
+    <p> Date end:  <%= @event.ends_at.strftime("%a %e %B %Y %H:%M") %>
+
+
+    <!-- Categories -->
+    <h4>Categories</h4>
+    <% @categories.each do |category| %>
+     <span class="label label-success"><%= category.name %></span>
+     <% end %>
+
 
 
 
