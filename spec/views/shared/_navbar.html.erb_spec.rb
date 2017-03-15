@@ -3,8 +3,19 @@
 require 'rails_helper'
 
 describe "shared/_navbar.html.erb" do
-  before { sign_in user }
+  #before { sign_in user }
 
+  it "renders login link" do
+    render
+    expect(rendered).to have_link("Log In", :href=>"/users/sign_in")
+  end
+
+  it "renders signup link" do
+    render
+    expect(rendered).to have_link "Sign Up"
+  end
+
+=begin
   context "without profile" do
     let(:user) { create :user }
 
@@ -24,4 +35,6 @@ describe "shared/_navbar.html.erb" do
       expect(rendered).to have_content profile.last_name
     end
   end
+=end
+
 end

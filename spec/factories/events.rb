@@ -2,16 +2,16 @@
 
 FactoryGirl.define do
   factory :event do
-    name        { Faker::RockBand.name }
-    description {Faker::Lorem.sentence }
+    name        { Faker::Name.name }
+    description { Faker::Lorem.sentence }
     location    { Faker::Address.city }
-    price       { Faker::Number.decimal }
+    price       { Faker::Number.decimal(2) }
     capacity    {Faker::Number.number(3)}
     includes_food {Faker::Boolean }
     includes_drinks {Faker::Boolean }
-    starts_at   { Faker::Date.forward(5)}
-    ends_at     {Faker::Date.forward(10)}
-    user_id     { build(:user)}
+    starts_at   10.days.from_now
+    ends_at     12.days.from_now
+    user     { build(:user)}
 
     trait :active do
       active true
@@ -22,6 +22,6 @@ FactoryGirl.define do
     end
 
 
-    
+
   end
 end
