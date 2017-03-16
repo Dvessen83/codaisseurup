@@ -8,6 +8,14 @@ class Event < ApplicationRecord
   validates :ends_at, presence: true
   validate :end_after_start
 
+  def free?
+    price == 0
+  end
+
+  def self.order_by_price
+    order(:price)
+  end
+
 
   private
 
