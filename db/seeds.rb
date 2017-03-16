@@ -4,12 +4,13 @@ Event.delete_all
 Profile.delete_all
 User.delete_all
 
+#Categories
 concert = Category.create(name: "Concert")
 festival = Category.create(name: "Festival")
 one_day = Category.create(name: "One day event")
 family_friendly = Category.create(name: "Family friendly")
 
-
+#Users
 john = User.create(email: "john@codaisseurup.com", password: "Koffie02")
 bob = User.create(email: "bob@codaisseurup.com", password: "Koffie02")
 harry = User.create(email: "harry@codaisseurup.com", password: "Koffie02")

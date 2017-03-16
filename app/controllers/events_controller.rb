@@ -18,19 +18,32 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
 
     if @event.save
-      redirect_to @event, notice: "Event succesfully created"
+      image_params.each do |image|
+        @event.photos.create(image: image)
+      end
+      redirect_to edit_event_path(@event), notice: "Event succesfully created"
     else
       render :new
     end
-
   end
 
+
+
   def edit
+    if current_user.id == @event.user.id
+      @photos = @event.photos
+    else
+      redirect_to root_path, notice: "You shall not pass!"
+    end
   end
 
   def update
     if @event.update(event_params)
-      redirect_to @event, notice: "Event succesfully updated"
+      image_params.each do |image|
+        @event.photos.create(image: image)
+      end
+
+      redirect_to edit_room_path(@event), notice: "Event succesfully updated"
     else
       render :edit
     end
@@ -44,6 +57,9 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :description, :location, :price, :capacity, :includes_food, :includes_drinks, :starts_at, :ends_at, :active, :user, category_ids: [])
+  end
 
+  def image_params
+    params[:images].present? ? params.require(:images) : []
   end
 end
