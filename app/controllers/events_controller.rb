@@ -43,7 +43,7 @@ class EventsController < ApplicationController
         @event.photos.create(image: image)
       end
 
-      redirect_to edit_room_path(@event), notice: "Event succesfully updated"
+      redirect_to edit_event_path(@event), notice: "Event succesfully updated"
     else
       render :edit
     end
