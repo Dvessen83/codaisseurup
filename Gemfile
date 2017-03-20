@@ -79,3 +79,7 @@ gem 'carrierwave', '0.11.2'
 gem 'cloudinary', '1.2.3'
 
 gem 'rubocop', '~> 0.47.1'
+
+gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'has_secure_token'
