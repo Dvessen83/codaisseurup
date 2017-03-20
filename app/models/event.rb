@@ -19,6 +19,23 @@ class Event < ApplicationRecord
     order(:price)
   end
 
+  def self.alphabetical
+    order(name: :asc)
+  end
+
+  scope :published, -> { where(active: true) }
+
+  scope :starts_before_ends_after, ->(start_date){
+    where('? BETWEEN starts_at AND ends_at', start_date)
+  }
+
+  scope :starts_on, ->(start_date){
+    where('starts_at = ?', start_date)
+  }
+
+  scope :ends_on, ->(end_date){
+    where('ends_at = ?', end_date)
+  }
 
   private
 

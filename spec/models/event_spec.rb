@@ -68,5 +68,7 @@ describe "association with registration" do
     expect(event.guests).to include(guest_user)
   end
 end
- 
+
+
+
 end
